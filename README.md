@@ -23,16 +23,15 @@ A full-stack application that allows users to search for books using the [Google
 
 ```
 Google-Books-Search-App/
-├── backend/                 # Node.js API server
+├── backend/src                 # Node.js API server
 │   ├── controllers/         # Route controllers
 │   ├── routes/              # API route definitions
 │   ├── services/            # External API and caching logic
 │   ├── utils/               # Helper utilities
 │   ├── middlewares/         # Custom middleware (e.g., cache)
-│   ├── .env                 # Store env variable
 │   └── index.ts             # Server entry point
 │
-├── frontend/                # React + TypeScript frontend
+├── frontend/src             # React + TypeScript frontend
 │   ├── components/          # UI components
 │   ├── hooks/               # Custom React hooks
 │   ├── services/            # API utilities (e.g., apiRequest)
@@ -41,10 +40,11 @@ Google-Books-Search-App/
 │   ├── utils/               # Utility functions
 │   ├── App.tsx              # Main app component
 │   ├── main.tsx             # React entry point
-│   ├── .env                 # Store env variable
 │   └── tailwind.config.js   # Tailwind CSS configuration
-│
-├── shared/                  # Shared constants, enums, and types
+|
+| kind of similar for both the folders
+|
+|── .env                     # Store env variable
 ├── .eslintrc.js             # ESLint configuration
 ├── .prettierrc              # Prettier configuration
 ├── .eslintignore            # Files to ignore by ESLint
@@ -136,7 +136,8 @@ API_DOMAIN=http://localhost:5001
   "stats": {
     "totalItems": 100,
     "responseTimeMs": 120
-  }
+  },
+  "totalItems":1000000
 }
 ```
 
