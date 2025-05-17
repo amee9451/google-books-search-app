@@ -16,26 +16,6 @@ jest.mock('../BookItem', () => ({
 }));
 
 describe('BookList Component', () => {
-  // Minimal valid mock data that matches your Book type
-  // const mockBooks: Book[] = SampleData;
-  // it('displays correct number of books', () => {
-  //   render(<BookList books={mockBooks} />);
-  //   const bookItems = screen.getAllByTestId('book-item');
-  //   expect(bookItems).toHaveLength(2);
-  // });
-
-  // it('renders book titles correctly', () => {
-  //   render(<BookList books={mockBooks} />);
-  //   expect(screen.getByText('The Pragmatic Programmer')).toBeInTheDocument();
-  //   expect(screen.getByText('Clean Code')).toBeInTheDocument();
-  // });
-
-  // it('matches snapshot with books', () => {
-  //   const { asFragment } = render(<BookList books={mockBooks} />);
-  //   expect(asFragment()).toMatchSnapshot();
-  // });
-
-
   it('renders book titles correctly', () => {
   render(<BookList books={SampleData} />);
   

@@ -45,15 +45,16 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
 
             {/* Metadata */}
             <div className="sm:col-span-3 space-y-1">
-              {book.publishedDate && <p><strong>Published: ${book.publishedDate}</strong></p>}
-              {book.publisher && <p><strong>Publisher: ${ book.publisher}</strong></p>}
+              {book.publishedDate && <p data-testid="published-date"><strong>Published: {book.publishedDate}</strong></p>}
+              {book.publisher && <p data-testid="publisher"><strong>Publisher: { book.publisher}</strong></p>}
               {typeof book.listPriceAmount === 'number' &&
-                <p><strong>Price:</strong>
+                <p data-testid="book-price"><strong>Price:</strong>
                   {`$${book.listPriceAmount.toFixed(2)}`}
                 </p>
               }
               {book.previewLink &&
                 <a
+                data-testid="preview-link"
                 href={book.previewLink}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -68,7 +69,7 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
           {/* Description */}
           <div className="border-t pt-3">
             <h3 className="font-semibold mb-1">{ DESCRIPTION}</h3>
-            <p className="leading-relaxed text-gray-700">{book.description || 'No description available.'}</p>
+            <p data-testid="book-description" className="leading-relaxed text-gray-700">{book.description || 'No description available.'}</p>
           </div>
         </>
       )}
