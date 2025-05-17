@@ -1,0 +1,24 @@
+# dependencies
+backend/node_modules/
+frontend/node_modules/
+node_modules/
+
+# production
+frontend/dist/
+frontend/build/
+backend/dist/
+backend/build/
+
+# misc
+.DS_Store
+.env
+frontend/.env
+backend/.env
+*.log
+npm-debug.log*
+
+# editor
+.vscode/
+
+# OS
+Thumbs.db

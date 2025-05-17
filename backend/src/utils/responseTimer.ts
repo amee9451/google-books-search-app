@@ -1,0 +1,1 @@
+export const recordResponseTime = (start: number) => Date.now() - start;

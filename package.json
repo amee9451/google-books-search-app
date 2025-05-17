@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "lint:all": "cd frontend && npm run lint && cd ../backend && npm run lint",
+    "format:all": "cd frontend && npm run format && cd ../backend && npm run format",
+    "precommit": "npm run lint:all && npm run format:all",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0"
+  }
+}
