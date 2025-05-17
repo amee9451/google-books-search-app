@@ -1,5 +1,5 @@
 
-import { ApiResponse } from "../types/BookList.types";
+import { ApiResponse } from "../types/Books/Book.types";
 const API_DOMAIN = process.env.API_DOMAIN;
 import { BOOK_SEARCH_API } from "../constants/Book";
 export async function apiRequest<T>(
@@ -13,7 +13,6 @@ export async function apiRequest<T>(
       },
       ...options,
     });
-
     const data = await res.json();
     if (!res.ok) {
       return {

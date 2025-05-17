@@ -19,7 +19,6 @@ app.use((req: express.Request, res: express.Response) => {
 });
 
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error('Unhandled error:', err);
   res.status(500).json({
     error: 'Internal Server Error',
     message: err.message || 'An unexpected error occurred.',

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SearchBar from './components/Books/SearchBar';
 import BookList from './components/Books/BookList';
 import StatsPanel from './components/Books/StatsPanel';
-import { Book,BookApiResponse,Stats } from './types/BookList.types';
+import { Book,BookApiResponse,Stats } from './types/Books/Book.types';
 const App: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);

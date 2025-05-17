@@ -1,6 +1,6 @@
 import React from 'react';
 import BookItem from './BookItem';
-import { BookListProps } from '../../types/BookList.types';
+import { BookListProps } from '../../types/Books/Book.types';
 
 
 const BookList: React.FC<BookListProps> = ({ books }) => {

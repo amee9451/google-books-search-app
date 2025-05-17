@@ -1,6 +1,6 @@
 
 import { apiRequest } from './api';
-import { BackendSearchResponse } from '../types/BookList.types';
+import { BackendSearchResponse } from '../types/Books/Book.types';
 import { QueryClient } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();

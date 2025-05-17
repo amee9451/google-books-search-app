@@ -11,4 +11,4 @@ export const LATEST_PUBLISHED_YEAR='Latest Publication'
 export const RESPONSE_TIME_MS = 'Response Time'
 export const BOOK_SEARCH_API = '/api/books/'
 export const DEFAULT_PAGE_LIMIT=5
-export const DEFAULT_PAGE_NUMBER=1
+export const DEFAULT_PAGE_NUMBER = 1

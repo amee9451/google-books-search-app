@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BookItemProps } from '../../types/BookList.types';
+import { BookItemProps } from '../../types/Books/Book.types';
 import {
   UNNOWN_AUTHOR,
   FALLBACK_IMAGE_URL,

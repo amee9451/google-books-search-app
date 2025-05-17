@@ -6,7 +6,7 @@ import {
   LATEST_PUBLISHED_YEAR,
   RESPONSE_TIME_MS
 } from '../../constants/Book';
-import { StatsPanelProps } from '../../types/BookList.types';
+import { StatsPanelProps } from '../../types/Books/Book.types';
 const StatsPanel: React.FC<StatsPanelProps> = ({ stats }) => {
   if (!stats) return null;
 

@@ -91,7 +91,17 @@ export interface SearchBarProps {
 export interface PaginationProps {
   isLoading: boolean;
   page: number;
-  handleNext: () => void;
-  handlePrev: () => void;
   totalPages: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface SearchFormProps {
+  query: string
+  setQuery: (value: string) => void
+  limit: number
+  setLimit: (value: number) => void
+  loading: boolean
+  apiStatus: boolean,
+  setPage: (value: number) => void
+  updateState:()=>void
 }
