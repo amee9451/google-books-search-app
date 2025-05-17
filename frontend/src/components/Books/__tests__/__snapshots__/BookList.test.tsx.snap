@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookList Component matches snapshot with books 1`] = `
+<DocumentFragment>
+  <div
+    class="space-y-4"
+  >
+    <div
+      data-testid="book-item"
+    >
+      The Pragmatic Programmer 
+    </div>
+    <div
+      data-testid="book-item"
+    >
+      Clean Code 
+    </div>
+  </div>
+</DocumentFragment>
+`;

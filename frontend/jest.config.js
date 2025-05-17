@@ -1,14 +1,17 @@
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
-  collectCoverage: true,
-  collectCoverageFrom: [
-    "src/**/*.{ts,tsx}",
-    "!src/**/*.d.ts",
-    "!src/index.tsx",
-    "!src/**/types.ts",
+  preset: 'ts-jest/presets/js-with-ts',
+  testEnvironment: 'jsdom',
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    '^@/(.*)$': '<rootDir>/src/$1' // For path aliases if using them
+  },
+  transformIgnorePatterns: [
+    '/node_modules/(?!react-leaflet)/',
   ],
-  coverageDirectory: "coverage",
-  coverageReporters: ["text", "lcov", "json-summary"],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/dist/'
+  ],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
 };
