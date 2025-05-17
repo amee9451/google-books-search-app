@@ -29,6 +29,7 @@ Google-Books-Search-App/
 │   ├── services/            # External API and caching logic
 │   ├── utils/               # Helper utilities
 │   ├── middlewares/         # Custom middleware (e.g., cache)
+│   ├── .env                 # Store env variable
 │   └── index.ts             # Server entry point
 │
 ├── frontend/                # React + TypeScript frontend
@@ -40,6 +41,7 @@ Google-Books-Search-App/
 │   ├── utils/               # Utility functions
 │   ├── App.tsx              # Main app component
 │   ├── main.tsx             # React entry point
+│   ├── .env                 # Store env variable
 │   └── tailwind.config.js   # Tailwind CSS configuration
 │
 ├── shared/                  # Shared constants, enums, and types
