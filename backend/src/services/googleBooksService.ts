@@ -4,10 +4,24 @@ import { getBooks } from './APIService';
 
 export const fetchBooks = async (query: string, page: number, limit: number) => {
   const cacheKey = `${query}-${page}-${limit}`;
-  const cached = await getFromCache(cacheKey);
 
-  if (cached) return JSON.parse(cached);
+  // Try to get from cache, but ignore errors
+  let cached: string | null = null;
+  try {
+    cached = await getFromCache(cacheKey);
+  } catch (err) {
+    console.warn('Warning: Redis getFromCache failed, proceeding without cache', err);
+  }
 
+  if (cached) {
+    try {
+      return JSON.parse(cached);
+    } catch (err) {
+      console.warn('Warning: Failed to parse cached data, ignoring cache', err);
+    }
+  }
+
+  // Fetch fresh data
   const response = await getBooks(query, limit, page);
 
   if (!response || !Array.isArray(response.items)) {
@@ -67,6 +81,12 @@ export const fetchBooks = async (query: string, page: number, limit: number) => 
     },
   };
 
-  await saveToCache(cacheKey, JSON.stringify(result));
+  // Try to save to cache, ignore errors
+  try {
+    await saveToCache(cacheKey, JSON.stringify(result));
+  } catch (err) {
+    console.warn('Warning: Redis saveToCache failed, cache not saved', err);
+  }
+
   return result;
 };
