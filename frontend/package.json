@@ -4,7 +4,6 @@
   "scripts": {
     "start": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "analyze": "WEBPACK_BUNDLE_ANALYZER=stats webpack --config webpack.prod.js",
     "serve": "serve -s ./dist --listen 3300 --no-request-logging",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
