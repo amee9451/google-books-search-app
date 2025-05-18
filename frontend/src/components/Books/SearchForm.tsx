@@ -1,10 +1,10 @@
-import React, { useRef } from 'react'
-import { DEFAULT_PAGE_LIMIT, DEFAULT_PAGE_NUMBER, PAGINATION_LIST } from '../../constants/Book'
-import { SearchFormProps } from '../../types/Books/Book.types'
+import React, { useRef } from 'react';
+import { DEFAULT_PAGE_LIMIT, DEFAULT_PAGE_NUMBER, PAGINATION_LIST } from '../../constants/Book';
+import { SearchFormProps } from '../../types/Books/Book.types';
 import { sanitizeInput } from '../../utils/sanitizeInput';
 const initialState = { query: '', limit: DEFAULT_PAGE_LIMIT, page: DEFAULT_PAGE_NUMBER };
 
- const SearchForm=({
+const SearchForm = ({
   query,
   setQuery,
   limit,
@@ -12,13 +12,16 @@ const initialState = { query: '', limit: DEFAULT_PAGE_LIMIT, page: DEFAULT_PAGE_
   loading,
   apiStatus,
   setPage,
-  updateState
-}: SearchFormProps) =>{
+  updateState,
+}: SearchFormProps) => {
   const lastSearchRef = useRef(initialState);
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     const sanitizedQuery = sanitizeInput(query.trim());
-    if (!sanitizedQuery || (sanitizedQuery === lastSearchRef.current.query && limit === lastSearchRef.current.limit))
+    if (
+      !sanitizedQuery ||
+      (sanitizedQuery === lastSearchRef.current.query && limit === lastSearchRef.current.limit)
+    )
       return;
     lastSearchRef.current = {
       query: sanitizedQuery,
@@ -28,9 +31,9 @@ const initialState = { query: '', limit: DEFAULT_PAGE_LIMIT, page: DEFAULT_PAGE_
     setPage(1);
     updateState();
   };
-    
-const handleKeyPress = (e:React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
       e.preventDefault();
       setPage(1);
       updateState();
@@ -39,10 +42,7 @@ const handleKeyPress = (e:React.KeyboardEvent) => {
 
   return (
     <div>
-      <form
-        onSubmit={handleSearch}
-        className="mb-4 flex flex-col sm:flex-row gap-2 items-center"
-      >
+      <form onSubmit={handleSearch} className="mb-4 flex flex-col sm:flex-row gap-2 items-center">
         <input
           type="text"
           className="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -69,14 +69,14 @@ const handleKeyPress = (e:React.KeyboardEvent) => {
         >
           {loading ? 'Searching...' : 'Search'}
         </button>
-          </form>
-                {apiStatus &&
+      </form>
+      {apiStatus && (
         <p className="text-xs text-red-500 font-medium flex items-center mt-2 px-5">
           Please try Again
         </p>
-      }
+      )}
     </div>
-  )
- }
+  );
+};
 
 export default SearchForm;

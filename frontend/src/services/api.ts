@@ -1,7 +1,6 @@
-
-import { ApiResponse } from "../types/Books/Book.types";
+import { ApiResponse } from '../types/Books/Book.types';
 const API_DOMAIN = process.env.API_DOMAIN;
-import { BOOK_SEARCH_API } from "../constants/Book";
+import { BOOK_SEARCH_API } from '../constants/Book';
 export async function apiRequest<T>(
   url: string,
   options: RequestInit = {}
@@ -9,7 +8,7 @@ export async function apiRequest<T>(
   try {
     const res = await fetch(`${API_DOMAIN}${BOOK_SEARCH_API}${url}`, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       ...options,
     });
@@ -17,7 +16,7 @@ export async function apiRequest<T>(
     if (!res.ok) {
       return {
         data: null,
-        error: data?.message || "API request failed",
+        error: data?.message || 'API request failed',
         status: res.status,
       };
     }
@@ -29,7 +28,7 @@ export async function apiRequest<T>(
   } catch (err: any) {
     return {
       data: null,
-      error: err.message || "Unexpected error",
+      error: err.message || 'Unexpected error',
       status: 500,
     };
   }

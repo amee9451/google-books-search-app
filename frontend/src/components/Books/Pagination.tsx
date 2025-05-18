@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
 import { PaginationProps } from '../../types/Books/Book.types';
 
-const Pagination: React.FC<PaginationProps> = ({ isLoading, page, totalPages,setPage }) => {
-    const handleNext = useCallback(() => {
+const Pagination: React.FC<PaginationProps> = ({ isLoading, page, totalPages, setPage }) => {
+  const handleNext = useCallback(() => {
     setPage((prev) => Math.min(prev + 1, totalPages));
   }, [totalPages]);
 
   const handlePrev = useCallback(() => {
     setPage((prev) => Math.max(prev - 1, 1));
   }, []);
-  
+
   return (
     <div className="flex justify-center items-center mt-4 mb-4">
       <button

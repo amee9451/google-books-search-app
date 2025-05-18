@@ -1,14 +1,14 @@
-export type BookItemProps= {
-  book: Book
-}
+export type BookItemProps = {
+  book: Book;
+};
 
-export type BookListProps ={
+export type BookListProps = {
   books: Book[];
-}
+};
 
-export type StatsPanelProps= {
+export type StatsPanelProps = {
   stats: Stats | null;
-}
+};
 
 export interface Book {
   title: string;
@@ -20,15 +20,15 @@ export interface Book {
   previewLink: string;
   listPriceAmount: number;
 }
-export type Stats ={
+export type Stats = {
   mostFrequentAuthor?: string;
   earliestPublishedYear?: string;
   latestPublishedYear?: string;
   totalItems?: number;
   responseTimeMs?: number;
-}
+};
 
-export type BookApiResponse ={
+export type BookApiResponse = {
   id: string;
   volumeInfo: {
     title: string;
@@ -41,55 +41,55 @@ export type BookApiResponse ={
     publishedDate?: string;
     [key: string]: any;
   };
-}
+};
 
-export type SearchResponse= {
+export type SearchResponse = {
   kind: string;
   totalItems: number;
   items: BookApiResponse[];
-  books?:Book[]
-}
+  books?: Book[];
+};
 
-export type ApiResponse<T> ={
+export type ApiResponse<T> = {
   data: T | null;
   error: string | null;
   status: number;
-}
+};
 
 export type SearchStats = {
   totalItems: number;
   responseTimeMs: number;
   [key: string]: any;
-}
+};
 
-export type BackendSearchResponse ={
+export type BackendSearchResponse = {
   books: Book[];
   stats: SearchStats;
   totalItems: number;
   responseTimeMs: number;
-}
-export type SearchBarProps ={
+};
+export type SearchBarProps = {
   setBooks: (books: Book[]) => void;
   setStats: (stats: SearchStats) => void;
-}
+};
 
-export type PaginationProps ={
+export type PaginationProps = {
   isLoading: boolean;
   page: number;
   totalPages: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-}
+};
 
 export type SearchFormProps = {
-  query: string
-  setQuery: (value: string) => void
-  limit: number
-  setLimit: (value: number) => void
-  loading: boolean
-  apiStatus: boolean,
-  setPage: (value: number) => void
-  updateState:()=>void
-}
+  query: string;
+  setQuery: (value: string) => void;
+  limit: number;
+  setLimit: (value: number) => void;
+  loading: boolean;
+  apiStatus: boolean;
+  setPage: (value: number) => void;
+  updateState: () => void;
+};
 export interface Book {
   id: string;
   volumeInfo: {

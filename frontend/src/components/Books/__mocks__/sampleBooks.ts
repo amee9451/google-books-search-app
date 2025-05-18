@@ -1,4 +1,4 @@
-import { Book } from "../../../types/Books/Book.types";
+import { Book } from '../../../types/Books/Book.types';
 
 const SampleData: Book[] = [
   {
@@ -11,8 +11,8 @@ const SampleData: Book[] = [
       publisher: 'Addison-Wesley',
       imageLinks: {
         thumbnail: '',
-        smallThumbnail: ''
-      }
+        smallThumbnail: '',
+      },
     },
     // Only include these if they're in your Book type
     title: 'The Pragmatic Programmer',
@@ -22,7 +22,7 @@ const SampleData: Book[] = [
     publisher: 'Addison-Wesley',
     smallThumbnail: '',
     previewLink: '',
-    listPriceAmount: 39.99
+    listPriceAmount: 39.99,
   },
   {
     id: '2',
@@ -34,8 +34,8 @@ const SampleData: Book[] = [
       publisher: 'Prentice Hall',
       imageLinks: {
         thumbnail: '',
-        smallThumbnail: ''
-      }
+        smallThumbnail: '',
+      },
     },
     title: 'Clean Code',
     authors: ['Robert C. Martin'],
@@ -44,8 +44,8 @@ const SampleData: Book[] = [
     publisher: 'Prentice Hall',
     smallThumbnail: '',
     previewLink: '',
-    listPriceAmount: 49.99
-  }
+    listPriceAmount: 49.99,
+  },
 ];
-  
+
 export default SampleData;

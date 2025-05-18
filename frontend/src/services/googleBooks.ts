@@ -1,4 +1,3 @@
-
 import { apiRequest } from './api';
 import { BackendSearchResponse } from '../types/Books/Book.types';
 import { QueryClient } from '@tanstack/react-query';
@@ -13,7 +12,7 @@ export async function searchBooks(query: string, limit = 10, page = 1) {
     return {
       data: cachedData,
       error: null,
-      status: 200
+      status: 200,
     };
   }
   const response = await apiRequest<BackendSearchResponse>(
