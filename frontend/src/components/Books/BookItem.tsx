@@ -28,7 +28,7 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
         onClick={() => setExpanded(!expanded)}
         className="text-left w-full font-semibold text-black mb-2"
       >
-        <span className="font-bold">{formatAuthorsNested(book.authors)}</span> — {book.title}
+        <span className="font-bold">{formatAuthorsNested(book.authors ?? [])}</span> — {book.title}
       </button>
       {expanded && (
         <>

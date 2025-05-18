@@ -1,12 +1,12 @@
-export interface BookItemProps {
+export type BookItemProps= {
   book: Book
 }
 
-export interface BookListProps {
+export type BookListProps ={
   books: Book[];
 }
 
-export interface StatsPanelProps {
+export type StatsPanelProps= {
   stats: Stats | null;
 }
 
@@ -20,7 +20,7 @@ export interface Book {
   previewLink: string;
   listPriceAmount: number;
 }
-export interface Stats {
+export type Stats ={
   mostFrequentAuthor?: string;
   earliestPublishedYear?: string;
   latestPublishedYear?: string;
@@ -28,7 +28,7 @@ export interface Stats {
   responseTimeMs?: number;
 }
 
-export interface BookApiResponse {
+export type BookApiResponse ={
   id: string;
   volumeInfo: {
     title: string;
@@ -43,19 +43,53 @@ export interface BookApiResponse {
   };
 }
 
-export interface SearchResponse {
+export type SearchResponse= {
   kind: string;
   totalItems: number;
   items: BookApiResponse[];
   books?:Book[]
 }
 
-export interface ApiResponse<T> {
+export type ApiResponse<T> ={
   data: T | null;
   error: string | null;
   status: number;
 }
 
+export type SearchStats = {
+  totalItems: number;
+  responseTimeMs: number;
+  [key: string]: any;
+}
+
+export type BackendSearchResponse ={
+  books: Book[];
+  stats: SearchStats;
+  totalItems: number;
+  responseTimeMs: number;
+}
+export type SearchBarProps ={
+  setBooks: (books: Book[]) => void;
+  setStats: (stats: SearchStats) => void;
+}
+
+export type PaginationProps ={
+  isLoading: boolean;
+  page: number;
+  totalPages: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export type SearchFormProps = {
+  query: string
+  setQuery: (value: string) => void
+  limit: number
+  setLimit: (value: number) => void
+  loading: boolean
+  apiStatus: boolean,
+  setPage: (value: number) => void
+  updateState:()=>void
+}
 export interface Book {
   id: string;
   volumeInfo: {
@@ -69,39 +103,4 @@ export interface Book {
     publishedDate?: string;
     [key: string]: any;
   };
-}
-
-export interface SearchStats {
-  totalItems: number;
-  responseTimeMs: number;
-  [key: string]: any;
-}
-
-export interface BackendSearchResponse {
-  books: Book[];
-  stats: SearchStats;
-  totalItems: number;
-  responseTimeMs: number;
-}
-export interface SearchBarProps {
-  setBooks: (books: Book[]) => void;
-  setStats: (stats: SearchStats) => void;
-}
-
-export interface PaginationProps {
-  isLoading: boolean;
-  page: number;
-  totalPages: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export interface SearchFormProps {
-  query: string
-  setQuery: (value: string) => void
-  limit: number
-  setLimit: (value: number) => void
-  loading: boolean
-  apiStatus: boolean,
-  setPage: (value: number) => void
-  updateState:()=>void
 }
