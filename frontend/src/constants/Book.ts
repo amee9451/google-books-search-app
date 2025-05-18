@@ -1,6 +1,6 @@
-export const UNNOWN_AUTHOR = 'Unknown Author';
+export const UNKNOWN_AUTHOR = 'Unknown Author';
 export const FALLBACK_IMAGE_URL = 'https://placehold.co/100x100';
-export const PRIVIEW_THIS_BOOK = 'Preview this book';
+export const PREVIEW_THIS_BOOK = 'Preview this book';
 export const DESCRIPTION = 'Description';
 export const PAGINATION_LIST = [5, 10, 20, 30, 40];
 export const TOTAL_ITEMS = 'Total Results';

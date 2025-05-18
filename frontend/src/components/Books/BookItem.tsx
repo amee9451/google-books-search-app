@@ -1,35 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { BookItemProps } from '../../types/Books/Book.types';
 import {
-  UNNOWN_AUTHOR,
+  UNKNOWN_AUTHOR,
   FALLBACK_IMAGE_URL,
-  PRIVIEW_THIS_BOOK,
+  PREVIEW_THIS_BOOK,
   DESCRIPTION,
 } from '../../constants/Book';
+
 const BookItem: React.FC<BookItemProps> = ({ book }) => {
   const [expanded, setExpanded] = useState(false);
+
   useEffect(() => {
     setExpanded(false);
   }, [book]);
 
-  const formatAuthorsNested = (authors: string[]): string => {
-    if (!authors?.length) return UNNOWN_AUTHOR;
+  // Memoize formatted authors to avoid recomputation
+  const formattedAuthors = useMemo(() => {
+    const authors = book.authors ?? [];
+    if (authors.length === 0) return UNKNOWN_AUTHOR;
     const wrapNested = (index: number): string =>
       index === authors.length - 1
         ? authors[index]
         : `${authors[index]} [,${wrapNested(index + 1)}]`;
     return wrapNested(0);
-  };
+  }, [book.authors]);
 
   return (
     <div className="border border-gray-400 p-4 mb-6 bg-white max-w-6xl mx-auto text-sm text-gray-800">
       {/* Top Line: Title and Author */}
       <button
-        onClick={() => setExpanded(!expanded)}
+        onClick={() => setExpanded((prev) => !prev)}
         className="text-left w-full font-semibold text-black mb-2"
       >
-        <span className="font-bold">{formatAuthorsNested(book.authors ?? [])}</span> — {book.title}
+        <span className="font-bold">{formattedAuthors}</span> — {book.title}
       </button>
+
       {expanded && (
         <>
           {/* Image + Metadata Row */}
@@ -39,7 +44,8 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
               <img
                 src={book.smallThumbnail || FALLBACK_IMAGE_URL}
                 alt={book.title}
-                className="w-32 h-44  object-cover border"
+                className="w-32 h-44 object-cover border"
+                loading="lazy"
               />
             </div>
 
@@ -47,18 +53,17 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
             <div className="sm:col-span-3 space-y-1">
               {book.publishedDate && (
                 <p data-testid="published-date">
-                  <strong>Published: {book.publishedDate}</strong>
+                  <strong>Published:</strong> {book.publishedDate}
                 </p>
               )}
               {book.publisher && (
                 <p data-testid="publisher">
-                  <strong>Publisher: {book.publisher}</strong>
+                  <strong>Publisher:</strong> {book.publisher}
                 </p>
               )}
               {typeof book.listPriceAmount === 'number' && (
                 <p data-testid="book-price">
-                  <strong>Price:</strong>
-                  {`$${book.listPriceAmount.toFixed(2)}`}
+                  <strong>Price:</strong> ${book.listPriceAmount.toFixed(2)}
                 </p>
               )}
               {book.previewLink && (
@@ -69,7 +74,7 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
                   rel="noopener noreferrer"
                   className="text-blue-600 underline hover:text-blue-800"
                 >
-                  {PRIVIEW_THIS_BOOK}
+                  {PREVIEW_THIS_BOOK}
                 </a>
               )}
             </div>
@@ -88,4 +93,4 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
   );
 };
 
-export default BookItem;
+export default React.memo(BookItem);

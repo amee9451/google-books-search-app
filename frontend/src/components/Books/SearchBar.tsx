@@ -7,27 +7,36 @@ import SearchForm from './SearchForm';
 
 const Pagination = React.lazy(() => import('./Pagination'));
 
+const INITIAL_STATE = {
+  query: '',
+  limit: DEFAULT_PAGE_LIMIT,
+  page: DEFAULT_PAGE_NUMBER,
+};
+
 const SearchBar: React.FC<SearchBarProps> = ({ setBooks, setStats }) => {
-  const [query, setQuery] = useState('');
-  const [limit, setLimit] = useState(DEFAULT_PAGE_LIMIT);
-  const [page, setPage] = useState(0);
+  const [query, setQuery] = useState(INITIAL_STATE.query);
+  const [limit, setLimit] = useState(INITIAL_STATE.limit);
+  const [page, setPage] = useState(INITIAL_STATE.page);
   const [totalPages, setTotalPages] = useState(DEFAULT_PAGE_NUMBER);
   const [loading, setLoading] = useState(false);
   const [apiStatus, setAPIStatus] = useState(false);
-  const INITIAL_STATE = { query: '', limit: DEFAULT_PAGE_LIMIT, page: DEFAULT_PAGE_NUMBER };
-  const lastSearchRef = useRef(INITIAL_STATE);
+  const queryRef = useRef('');
 
   const updateState = useCallback(async () => {
     const sanitizedQuery = sanitizeInput(query.trim());
     if (!sanitizedQuery) return;
+
+    queryRef.current = sanitizedQuery;
     setLoading(true);
+
     try {
       const { data, error } = await searchBooks(sanitizedQuery, limit, page);
+
       if (error || !data) {
-        lastSearchRef.current = INITIAL_STATE;
         setAPIStatus(true);
         return;
       }
+
       setAPIStatus(false);
       setBooks(data.books);
       setStats({
@@ -35,6 +44,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ setBooks, setStats }) => {
         totalItems: data.totalItems,
         responseTimeMs: data.responseTimeMs,
       });
+
       setTotalPages(Math.ceil(data.totalItems / limit));
     } catch (err) {
       console.error('Search failed:', err);
@@ -42,25 +52,30 @@ const SearchBar: React.FC<SearchBarProps> = ({ setBooks, setStats }) => {
       setLoading(false);
     }
   }, [query, limit, page, setBooks, setStats]);
+
   useEffect(() => {
-    if (!loading) {
+    // only fetch if user has already submitted a query
+    if (queryRef.current && !loading) {
       updateState();
     }
   }, [page]);
-  const searchFormProps = {
-    query,
-    setQuery,
-    limit,
-    setLimit,
-    loading,
-    apiStatus,
-    setPage,
-    updateState,
-  };
+
+  const showPagination = totalPages > 1;
+
   return (
     <>
-      <SearchForm {...searchFormProps} />
-      {totalPages > 1 && (
+      <SearchForm
+        query={query}
+        setQuery={setQuery}
+        limit={limit}
+        setLimit={setLimit}
+        loading={loading}
+        apiStatus={apiStatus}
+        setPage={setPage}
+        updateState={updateState}
+      />
+
+      {showPagination && (
         <Suspense fallback={null}>
           <Pagination isLoading={loading} page={page} totalPages={totalPages} setPage={setPage} />
         </Suspense>

@@ -1,20 +1,24 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import { PaginationProps } from '../../types/Books/Book.types';
 
 const Pagination: React.FC<PaginationProps> = ({ isLoading, page, totalPages, setPage }) => {
   const handleNext = useCallback(() => {
     setPage((prev) => Math.min(prev + 1, totalPages));
-  }, [totalPages]);
+  }, [setPage, totalPages]);
 
   const handlePrev = useCallback(() => {
     setPage((prev) => Math.max(prev - 1, 1));
-  }, []);
+  }, [setPage]);
+
+  const isPrevDisabled = isLoading || page <= 1;
+  const isNextDisabled = isLoading || page >= totalPages;
 
   return (
     <div className="flex justify-center items-center mt-4 mb-4">
       <button
         onClick={handlePrev}
-        disabled={isLoading || page <= 1}
+        disabled={isPrevDisabled}
+        aria-label="Previous page"
         className="px-4 py-2 bg-gray-300 rounded-l disabled:opacity-50"
       >
         Previous
@@ -22,7 +26,8 @@ const Pagination: React.FC<PaginationProps> = ({ isLoading, page, totalPages, se
       <span className="px-4 py-2 bg-white border-t border-b">{`Page ${page} of ${totalPages}`}</span>
       <button
         onClick={handleNext}
-        disabled={isLoading || page >= totalPages}
+        disabled={isNextDisabled}
+        aria-label="Next page"
         className="px-4 py-2 bg-gray-300 rounded-r disabled:opacity-50"
       >
         Next
@@ -31,4 +36,4 @@ const Pagination: React.FC<PaginationProps> = ({ isLoading, page, totalPages, se
   );
 };
 
-export default Pagination;
+export default memo(Pagination);

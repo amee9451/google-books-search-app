@@ -104,3 +104,9 @@ export interface Book {
     [key: string]: any;
   };
 }
+export type StatItem = {
+  key: keyof StatsPanelProps['stats'] | string;
+  label: string;
+  required?: boolean;
+  formatter: (value: any) => string;
+};

@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import BookItem from '../BookItem';
 import { BookItemProps } from '../../../types/Books/Book.types';
-import { UNNOWN_AUTHOR, DESCRIPTION } from '../../../constants/Book';
+import { UNKNOWN_AUTHOR, DESCRIPTION } from '../../../constants/Book';
 describe('BookItem Component', () => {
   // Properly typed mock data that matches BookItemProps['book']
   const mockBook: BookItemProps['book'] = {
@@ -75,7 +75,7 @@ describe('BookItem Component', () => {
         },
       },
     });
-    expect(screen.getByText(UNNOWN_AUTHOR)).toBeInTheDocument();
+    expect(screen.getByText(UNKNOWN_AUTHOR)).toBeInTheDocument();
   });
   it('shows "No description available" when description is missing', () => {
     renderComponent({

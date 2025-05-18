@@ -5,9 +5,7 @@ import { BookListProps } from '../../types/Books/Book.types';
 const BookList: React.FC<BookListProps> = ({ books }) => {
   return (
     <div className="space-y-4">
-      {books.map((book, index) => (
-        <BookItem key={index} book={book} />
-      ))}
+      {books.length === 0 ? null : books.map((book, index) => <BookItem key={index} book={book} />)}
     </div>
   );
 };
