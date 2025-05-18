@@ -60,6 +60,10 @@ Google-Books-Search-App/
 - Centralized error handling for unmatched endpoints and server errors.
 - Rate limiting via middleware to prevent API overuse.
 
+## Redis
+
+This project requires **Redis** to be installed and running locally (or accessible remotely) for API caching management.
+
 
 ## Setup Instructions
 
