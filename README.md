@@ -121,7 +121,6 @@ cd frontend
 npm start
 npm run build && npm run serve 
 npm run test
-npm run format 
 ...
 ```
 
