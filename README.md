@@ -16,6 +16,9 @@ A full-stack application that allows users to search for books using the [Google
 - Code formatting with Prettier and ESLint
 - Add pagination controls (Previous, Next)
 - API data fetching with React Query (stale-while-revalidate)
+- Mobile responsiveness
+- Partial implementation of unit and integration tests
+- Accessibility (a11y) supported
 
 
 
@@ -156,15 +159,11 @@ To format all files with Prettier:
 npm run format
 ```
 
-## Development Notes
-
-- Avoids unnecessary API calls if the same search query and limit are submitted again.
-- Displays real-time stats and error handling in UI.
 
 ## Future Improvements
 
-- Improve mobile responsiveness
 - Implement unit and integration tests
 - Add loading skeletons
 - Improve accessibility (a11y)
 - Implement infinite scroll or window virtualization
+- Displays real-time stats and error handling in UI.
