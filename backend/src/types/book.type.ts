@@ -1,8 +1,9 @@
-export interface ImageLinks {
+export type ImageLinks = {
+  thumbnail?: string;
   smallThumbnail?: string;
-}
+};
 
-export interface VolumeInfo {
+export type VolumeInfo = {
   title: string;
   authors?: string[];
   publishedDate?: string;
@@ -10,42 +11,41 @@ export interface VolumeInfo {
   publisher?: string;
   imageLinks?: ImageLinks;
   previewLink?: string;
-}
+  [key: string]: any; // for flexibility
+};
 
-export interface SaleInfo {
+export type SaleInfo = {
   listPrice?: {
     amount?: number | string;
   };
-}
+};
 
-export interface BookItem {
+export type BookApiResponse = {
+  id: string;
   volumeInfo: VolumeInfo;
   saleInfo: SaleInfo;
-}
-export interface BookApiResponse {
-  id: string;
-  volumeInfo: {
-    title: string;
-    authors?: string[];
-    description?: string;
-    imageLinks?: {
-      thumbnail?: string;
-      smallThumbnail?: string;
-    };
-    publishedDate?: string;
-    [key: string]: any;
-  };
-  saleInfo: SaleInfo;
-  totalItems: number;
-}
-export interface Stats {
+};
+
+export type BookItem = {
+  title: string;
+  authors: string[];
+  publishedDate: string;
+  description: string;
+  publisher: string;
+  smallThumbnail: string;
+  previewLink: string;
+  listPriceAmount: number | string;
+};
+
+export type Stats = {
   mostFrequentAuthor?: string;
   earliestPublishedYear?: string;
   latestPublishedYear?: string;
   totalItems?: number;
   responseTimeMs?: number;
-}
-export interface BooksApiResult {
+};
+
+export type BooksApiResult = {
   items: BookApiResponse[];
   totalItems: number;
-}
+};

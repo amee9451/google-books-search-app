@@ -1,5 +1,5 @@
 import { getFromCache, saveToCache } from './cacheService';
-import { BooksApiResult, BookApiResponse } from '../types/book.type';
+import { BookApiResponse } from '../types/book.type';
 import { getBooks } from './APIService';
 
 export const fetchBooks = async (query: string, page: number, limit: number) => {
