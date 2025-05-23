@@ -1,0 +1,19 @@
+services:
+  backend:
+    image: google-books-backend
+    container_name: google-books-backend
+    build:
+      context: .
+    ports:
+      - '5001:5001'
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis-server
+    ports:
+      - '6379:6379'

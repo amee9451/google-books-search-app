@@ -167,6 +167,48 @@ npm run format
 ```
 
 
+## Backend Setup with Docker
+
+This project includes a Dockerized backend server with Redis caching. Follow the steps below to get the backend running using Docker Compose.
+
+### 📦 Prerequisites
+
+Make sure you have the following installed:
+
+- [Docker](https://www.docker.com/products/docker-desktop)
+
+---
+
+### 📁 Steps to Run the Backend
+
+#### 1. Navigate to the `backend` directory
+
+```bash
+cd backend
+docker build -t google-book-search .
+docker-compose up --build or docker-compose up -d --build
+```
+**Verifying the Setup**
+
+```
+http://localhost:5001/api/books
+You can test the endpoint using your browser, Postman, or curl.
+```
+
+## Important Notes
+
+The frontend is not Dockerized. You must run it manually
+```
+cd frontend
+npm install
+npm start
+
+```
+
+
+
+
+
 ## Future Improvements
 
 - Implement unit and integration tests

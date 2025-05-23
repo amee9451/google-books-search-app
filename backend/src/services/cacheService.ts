@@ -2,11 +2,13 @@ import Redis from 'ioredis';
 import dotenv from 'dotenv';
 
 dotenv.config();
+const REDIS_HOST = process.env.REDIS_HOST || 'localhost';
+const REDIS_PORT = Number(process.env.REDIS_PORT) || 6379;
 
-const TTL:number=Number(process.env.REDIS_TTL)
+const TTL: number = Number(process.env.REDIS_TTL)
 const redis = new Redis({
-  host: process.env.REDIS_HOST,
-  port: Number(process.env.REDIS_PORT),
+  host: REDIS_HOST,
+  port: REDIS_PORT,
   retryStrategy(times) {
     if (times > 5) {
       // Stop trying after 5 attempts

@@ -12,11 +12,6 @@ const api = axios.create({
 
 // 👇 Intercept every request and log URL + params
 api.interceptors.request.use((config) => {
-  console.log('[Axios Request]', {
-    method: config.method,
-    url: `${config.baseURL}${config.url}`,
-    params: config.params,
-  });
   return config;
 }, (error) => {
   console.error('[Axios Request Error]', error.message);
@@ -25,18 +20,8 @@ api.interceptors.request.use((config) => {
 
 // 👇 Intercept every response and log data
 api.interceptors.response.use((response) => {
-  console.log('[Axios Response]', {
-    url: response.config.url,
-    status: response.status,
-    data: response.data,
-  });
   return response;
 }, (error) => {
-  console.error('[Axios Response Error]', {
-    url: error.config?.url,
-    message: error.message,
-    response: error.response?.data,
-  });
   return Promise.reject(error);
 });
 
