@@ -181,7 +181,7 @@ Make sure you have the following installed:
 
 ### 📁 Steps to Run the Backend
 
-#### 1. Navigate to the `backend` directory
+#### Navigate to the `backend` directory
 
 ```bash
 cd backend
